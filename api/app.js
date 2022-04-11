@@ -6,6 +6,10 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var asiakasRouter = require('./routes/asiakas');
 var tilitapahtumatRouter = require('./routes/tilitapahtumat');
+var KorttiRouter = require('./routes/Kortti');
+var tiliRouter = require('./routes/tili');
+var tili_asiakasRouter = require('./routes/tili_asiakas');
+
 const { application } = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
@@ -24,5 +28,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/asiakas', asiakasRouter);
 app.use('/tilitapahtumat', tilitapahtumatRouter);
+app.use('/Kortti', KorttiRouter);
+app.use('/tili', tiliRouter);
+app.use('/tili_asiakas', tili_asiakasRouter);
 
 module.exports = app;
