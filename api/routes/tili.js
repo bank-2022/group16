@@ -58,5 +58,31 @@ function(request, response) {
     }
   });
 });
+// UUSI
+router.get('/Saldo/:Korttinumero',
+function(request,response){
+  tili.getSaldo(request.params.Korttinumero, function(err,dbResult){
+    console.log(request.params.Korttinumero)
+  if(err){
+    response.json(err);
+  }
+  else{
+    response.json(dbResult);
+  }
+});
+});
+  router.put('/Saldo/Nosto/:Korttinumero',
+function(request,response){
+  tili.updateSaldo(request.params.Korttinumero,request.body.amount, function(err,dbResult){
+    console.log(request.params.Korttinumero)
+  if(err){
+    response.json(err);
+  }
+  else{
+    response.json(dbResult);
+  }
+});
+});
+// UUSI
 
 module.exports = router;

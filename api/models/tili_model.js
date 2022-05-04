@@ -23,6 +23,16 @@ const tili = {
       [tili.idTili, tili.Tilinumero, tili.Saldo, id],
       callback
     );
-  }
+  },    // UUSI
+  getSaldo:function(Korttinumero,callback){
+    return db.query('select Saldo from tili inner join Kortti on tili.idTili=Kortti.idTili where Korttinumero=?', [Korttinumero],callback);
+  },
+  updateSaldo:function(idTili,amount, callback)     /*(Korttinumero, callback)*/{
+    return db.query(
+      //'update tili set amount=?, Saldo=(Saldo - amount) inner join Kortti on tili.idTili=Kortti.idTili where Korttinumero=?',[amount,Korttinumero], callback);
+    'update tili set amount=?, Saldo=(Saldo - amount) where idTili=?', [amount,idTili],callback)
+    
+  }   
+
 };
 module.exports = tili;

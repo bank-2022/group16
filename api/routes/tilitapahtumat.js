@@ -1,4 +1,5 @@
 const express = require('express');
+const req = require('express/lib/request');
 const router = express.Router();
 const tilitapahtumat = require('../models/tilitapahtumat_model');
 
@@ -58,5 +59,15 @@ function(request, response) {
     }
   });
 });
-
+// UUSI
+router.get('/tilitapahtumat/:idTili',function(request,response){
+  tilitapahtumat.gettilitapahtumat(request.params.idTili,function(err,dbResult){
+  if(err){
+    response.json(err);
+  }
+  else{
+    response.json(dbResult);
+  }
+});
+}); // UUSI
 module.exports = router;

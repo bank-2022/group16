@@ -21,8 +21,10 @@ const tilitapahtumat = {
     return db.query(
       'update tilitapahtumat set idTilitapahtumat=?,Paivays=?, Tapahtuma=?, Summa=?,idTili=?, idKortti=? where idTilitapahtumat=?',
       [tilitapahtumat.idTilitapahtumat, tilitapahtumat.Paivays, tilitapahtumat.Tapahtuma,tilitapahtumat.Summa,tilitapahtumat.idTili,tilitapahtumat.idKortti, id],
-      callback
-    );
-  }
-};
+      callback);
+  },      // UUSI
+  gettilitapahtumat:function(idTili,callback){
+    return db.query('select idTilitapahtumat,DATE_FORMAT(Paivays,"%d.%m.%Y") as Paivays,Tapahtuma,Summa,idTili,idKortti from tilitapahtumat where idTili=?',[idTili],callback);
+}
+};        // UUSI
 module.exports = tilitapahtumat;
